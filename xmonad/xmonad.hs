@@ -2,11 +2,12 @@ import XMonad
 import XMonad.Config.Xfce
 import XMonad.Util.EZConfig
 import XMonad.Layout.Circle
+import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageDocks
 
 baseConfig = xfceConfig
 
-myLayout = avoidStruts (tiled ||| Full ||| Circle )
+myLayout = avoidStruts . smartBorders $ tiled ||| Full ||| Circle
   where
     tiled = Tall nmaster delta ratio
     nmaster = 1
