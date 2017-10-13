@@ -14,11 +14,13 @@ myLayout = avoidStruts . smartBorders $ tiled ||| Full ||| Circle
     ratio   = 3/4
     delta   = 3/100
 
+neonblue = "#2578fc"
+
 main = xmonad $ baseConfig
 	{ terminal = "xfce4-terminal"
         , modMask  = mod4Mask
         , borderWidth = 3
-        , focusedBorderColor = "#2578fc"
+        , focusedBorderColor = neonblue
         , workspaces = ["web", "dev"] ++ map show [3..9]
         , layoutHook = myLayout
         }
