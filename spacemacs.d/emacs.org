@@ -1,0 +1,22 @@
+* Mu4e
+  #+begin_src emacs-lisp :tangle yes
+    (setq mu4e-maildir "~/mail"
+          mu4e-sent-folder "/uni/Sent Items"
+          mu4e-drafts-folder "/uni/Drafts"
+          mu4e-trash-folder "/uni/Deleted Items"
+          mu4e-get-mail-command "offlineimap"
+          mu4e-update-interval 180 ;; 3 minutes
+          mu4e-headers-auto-update t
+          mu4e-enable-notifications t ;; enable notifications on new mail
+          user-mail-address "teofil.camarasu@oriel.ox.ac.uk")
+    (with-eval-after-load 'mu4e-alert
+      ;; Enable Desktop notifications
+      (mu4e-alert-set-default-style 'notifications)) ; For linux
+      ;; (mu4e-alert-set-default-style 'libnotify))  ; Alternative for linux
+      ;; (mu4e-alert-set-default-style 'notifier))   ; For Mac OSX (through the
+                                                     ; terminal notifier app)
+      ;; (mu4e-alert-set-default-style 'growl))      ; Alternative for Mac OSX
+
+    (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display) ;; display mode lin unread mail
+    (mu4e t)
+  #+end_src

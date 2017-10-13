@@ -1,2 +1,6 @@
 - link:
     ~/.xmonad:
+    ~/.emacs.d:
+      relink: true
+    ~/.spacemacs.d:
+      relink: true
