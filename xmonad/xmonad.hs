@@ -7,7 +7,7 @@ import XMonad.Hooks.ManageDocks
 
 baseConfig = xfceConfig
 
-myLayout = avoidStruts . smartBorders $ tiled ||| Full ||| Circle
+myLayout = avoidStruts . smartBorders $ tiled ||| Full
   where
     tiled = Tall nmaster delta ratio
     nmaster = 1
