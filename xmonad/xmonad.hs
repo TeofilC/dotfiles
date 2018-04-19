@@ -16,11 +16,17 @@ myLayout = avoidStruts . smartBorders $ tiled ||| Full
 
 neonblue = "#2578fc"
 
+myModMask = mod4Mask
+
 main = xmonad $ baseConfig
 	{ terminal = "xfce4-terminal"
-        , modMask  = mod4Mask
-        , borderWidth = 3
+        , modMask  = myModMask
+        , borderWidth = 2
         , focusedBorderColor = neonblue
-        , workspaces = ["web", "dev"] ++ map show [3..9]
+        , workspaces = ["web"] ++ map show [2..9]
         , layoutHook = myLayout
-        }
+        } `additionalKeys`
+        [ ((myModMask, xK_f), spawn "firefox")
+        , ((myModMask, xK_g), spawn "google-chrome")
+        , ((myModMask, xK_e), spawn "emacs")
+        ]
