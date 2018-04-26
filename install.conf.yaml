@@ -4,3 +4,5 @@
       relink: true
     ~/.spacemacs.d:
       relink: true
+    ~/.gitconfig:
+      relink: true
