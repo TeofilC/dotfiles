@@ -18,6 +18,8 @@ neonblue = "#2578fc"
 
 myModMask = mod4Mask
 
+myFileManager = "thunar"
+
 main = xmonad $ baseConfig
 	{ terminal = "xfce4-terminal"
         , modMask  = myModMask
@@ -29,4 +31,5 @@ main = xmonad $ baseConfig
         [ ((myModMask, xK_f), spawn "firefox")
         , ((myModMask, xK_g), spawn "google-chrome")
         , ((myModMask, xK_e), spawn "emacs")
+        , ((myModMask, xK_j), spawn myFileManager)
         ]
