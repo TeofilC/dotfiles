@@ -6,3 +6,5 @@
       relink: true
     ~/.gitconfig:
       relink: true
+    ~/.xmobarrc:
+      relink: true

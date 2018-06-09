@@ -1,0 +1,26 @@
+Config {
+  font = "xft:Inconsolata:style=Bold:size=12"
+  , persistent = False
+  , template = "%StdinReader%}{%memory% %battery% %battery% %date%"
+  , commands = [ 
+      Run Cpu ["-L","3","-H","50",
+               "--normal","green","--high","red"] 10
+      , Run Memory ["-t","Mem: <usedratio>%"] 10
+      , Run Battery        [ "--template" , "Batt: <acstatus>"
+                         , "--Low"      , "10"        -- units: %
+                         , "--High"     , "80"        -- units: %
+                         , "--low"      , "darkred"
+                         , "--normal"   , "darkorange"
+                         , "--high"     , "darkgreen"
+
+                         , "--" -- battery specific options
+                         -- discharging status
+                         , "-o"	, "<left>% (<timeleft>)"
+                         -- AC "on" status
+                         , "-O"	, "<fc=#dAA520>Charging</fc>"
+                         -- charged status
+                         , "-i"	, "<fc=#006000>Charged</fc>"
+                         ] 50
+      , Run StdinReader
+      ]
+}
