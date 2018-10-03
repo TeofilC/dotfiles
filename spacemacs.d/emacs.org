@@ -1,5 +1,5 @@
 * Mu4e
-  #+begin_src emacs-lisp :tangle yes
+  #+begin_src emacs-lisp :tangle no 
     (setq mu4e-maildir "~/mail"
           mu4e-sent-folder "/uni/Sent Items"
           mu4e-drafts-folder "/uni/Drafts"
@@ -9,14 +9,72 @@
           mu4e-headers-auto-update t
           mu4e-enable-notifications t ;; enable notifications on new mail
           user-mail-address "teofil.camarasu@oriel.ox.ac.uk")
+    (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display) ;; display mode lin unread mail
+    ;; (mu4e t)
+  #+end_src
+** Set up mu4e-alert
+  #+BEGIN_SRC emacs-lisp :tangle yes
     (with-eval-after-load 'mu4e-alert
       ;; Enable Desktop notifications
       (mu4e-alert-set-default-style 'notifications)) ; For linux
       ;; (mu4e-alert-set-default-style 'libnotify))  ; Alternative for linux
       ;; (mu4e-alert-set-default-style 'notifier))   ; For Mac OSX (through the
-                                                     ; terminal notifier app)
+                                            ; terminal notifier app)
       ;; (mu4e-alert-set-default-style 'growl))      ; Alternative for Mac OSX
+  #+END_SRC
 
-    (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display) ;; display mode lin unread mail
-    (mu4e t)
+* Org mode
+#+begin_src emacs-lisp :tangle yes
+  (add-hook 'org-mode-hook #'(lambda ()
+                               ;;(turn-on-visual-line-mode) ;; Enable linewrap
+                               (spacemacs/toggle-visual-line-navigation-on) ;; enable visual line navigation. Ie, use visual lines instead of line numbers. This also enables visual line mode
+            commit editing                   (spacemacs/toggle-line-numbers-off) ;; disable line numbers
+                               
+                               (setq org-export-with-smart-quotes t) ;; enable smart qoutes
+                               ))
+#+end_src
+#+begin_src emacs-lisp :tangle yes
+  (setq
+   org-default-notes-file "~/notes/notes.org"
+   org-capture-templates
+   '(("t"
+      "Todo list item"
+      entry
+      (file+headline org-default-notes-file "Tasks")
+      "* TODO %?\n %i\n %a")
+     ("j" "Journal Entry"
+      entry (file+weektree "~/notes/journal.org")
+      "*** TODO %U \n - %?"
+      )
+     ("e" "Essay"
+      entry (file+headline "~/notes/essay.org" "Due")
+      "** TODO %^{Title} [/] \n - [ ] Do reading \n   - [ ] %? \n - [ ] First draft \n - [ ] Second Draft")
+     ("r" "Add to Reading List"
+      entry (file+headline "~/notes/readinglist.org" "Read")
+      "** %^{Title}, by %^{Author} \n %^{content}")
+     )
+  )
+#+end_src
+** Enable Habits
+#+begin_src emacs-lisp :tangle yes
+  (add-to-list 'org-modules 'org-habit)
+#+end_src
+
+** Agenda mode
+#+begin_src emacs-lisp :tangle yes
+  (setq org-agenda-files '("~/notes/todo.org" "~/notes/inbox.org"))
+#+end_src
+
+* Zettle
+  #+begin_src emacs-lisp :tangle yes
+    (defun my/generate-zettel-name ()
+      (setq my-org-note--name (read-string "Title:"))
+      (setq my-org-note--time (format-time-string "%Y.%m.%d_%H.%M.%S"))
+      (expand-file-name (format "%s.org" my-org-note--time) "~/notes/zettel"))
+    (setq org-capture-templates
+          '(("z" "Zettel" plain
+             (file my/generate-zettel-name)
+             "%(format \"#+TITLE: %s\n#+DATE: %s\n#+TAGS:\n\#+SOURCE: n\" my-org-note--name my-org-note--time)"
+             )
+            ))
   #+end_src

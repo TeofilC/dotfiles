@@ -40,6 +40,7 @@ values."
      yaml
      haskell
      python
+     scala
      auto-completion
      ;; better-defaults
      emacs-lisp
@@ -59,7 +60,10 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(nix-mode
+                                      org-journal
+                                      interleave
+                                      deft)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -328,7 +332,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (smeargle orgit mmm-mode markdown-toc markdown-mode magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup yapfify yaml-mode ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text macrostep lorem-ipsum live-py-mode linum-relative link-hint intero info+ indent-guide hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hoogle helm-flx helm-descbinds helm-ag haskell-snippets google-translate golden-ratio gnuplot git-gutter-fringe git-gutter-fringe+ flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diff-hl define-word cython-mode company-ghci company-ghc column-enforce-mode cmm-mode clean-aindent-mode auto-highlight-symbol auto-dictionary auto-compile anaconda-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (deft interleave org-journal noflet ensime sbt-mode scala-mode nix-mode powerline spinner org-category-capture org-plus-contrib org-mime mu4e-maildirs-extension mu4e-alert ht alert log4e gntp hydra dash-functional parent-mode projectile helm-company helm-c-yasnippet fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct pos-tip flycheck pkg-info epl flx git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg undo-tree highlight diminish company-statistics ghc haskell-mode company-cabal company-anaconda company bind-map bind-key auto-yasnippet yasnippet packed pythonic f dash s helm avy helm-core async ac-ispell auto-complete popup smeargle orgit mmm-mode markdown-toc markdown-mode magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup yapfify yaml-mode ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree move-text macrostep lorem-ipsum live-py-mode linum-relative link-hint intero info+ indent-guide hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hoogle helm-flx helm-descbinds helm-ag haskell-snippets google-translate golden-ratio gnuplot git-gutter-fringe git-gutter-fringe+ flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diff-hl define-word cython-mode company-ghci company-ghc column-enforce-mode cmm-mode clean-aindent-mode auto-highlight-symbol auto-dictionary auto-compile anaconda-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
