@@ -48,12 +48,7 @@
 
   (setq org-ref-default-bibliography '("~/org/references.bib")
         org-ref-notes-directory "~/org/papers"
-        org-ref-open-pdf-function 'my/org-ref-open-pdf-at-point
-        )
-
-  (message "%s" (bibtex-completion-find-pdf "DummettFregephilosophylanguage1973"))
-
-
+        org-ref-open-pdf-function 'my/org-ref-open-pdf-at-point)
 #+end_src
 
 #+RESULTS:
@@ -98,7 +93,7 @@
 
 ** Agenda mode
 #+begin_src emacs-lisp :tangle yes
-  (setq org-agenda-files '("~/notes/todo.org" "~/notes/inbox.org"))
+  (setq org-agenda-files '("~/org/todo.org" "~/org/inbox.org" "~/org/events.org"))
 #+end_src
 
 * Zettle
