@@ -65,26 +65,50 @@
                                ))
 #+end_src
 #+begin_src emacs-lisp :tangle yes
+  (defun my/generate-zettel-name ()
+    (setq my-org-note--name (read-string "Title:"))
+    (setq my-org-note--time (format-time-string "%Y.%m.%d_%H.%M.%S"))
+    (expand-file-name (format "%s.org" my-org-note--time) "~/notes/zettel"))
   (setq
-   org-default-notes-file "~/notes/notes.org"
+   org-default-notes-file "~/org/notes.org"
    org-capture-templates
    '(("t"
       "Todo list item"
       entry
-      (file+headline org-default-notes-file "Tasks")
-      "* TODO %?\n %i\n %a")
+      (file+headline "~/org/todo.org" "unsorted")
+      "* TODO  %?\n %i\n %a")
+
+     ("e"
+      "Event"
+      entry
+      (file+headline "~/org/events.org" "One-off")
+      "** %^{Name}
+         :PROPERTIES:
+         :Added: %U
+         :Location: %^{Location}
+         :END:
+         At: %^T"
+      )
+
      ("j" "Journal Entry"
       entry (file+weektree "~/notes/journal.org")
       "*** TODO %U \n - %?"
       )
-     ("e" "Essay"
-      entry (file+headline "~/notes/essay.org" "Due")
-      "** TODO %^{Title} [/] \n - [ ] Do reading \n   - [ ] %? \n - [ ] First draft \n - [ ] Second Draft")
+
+     ("i" "Idea"
+      entry (file "~/org/ideas.org")
+      "* %? ")
+
      ("r" "Add to Reading List"
       entry (file+headline "~/notes/readinglist.org" "Read")
       "** %^{Title}, by %^{Author} \n %^{content}")
+
+     ("z" "Zettel" plain
+      (file my/generate-zettel-name)
+      "%(format \"#+TITLE: %s\n#+DATE: %s\n#+TAGS:\n\#+SOURCE: n\" my-org-note--name my-org-note--time)"
+      )
      )
-  )
+   )
 #+end_src
 ** Enable Habits
 #+begin_src emacs-lisp :tangle yes
@@ -96,16 +120,3 @@
   (setq org-agenda-files '("~/org/todo.org" "~/org/inbox.org" "~/org/events.org"))
 #+end_src
 
-* Zettle
-  #+begin_src emacs-lisp :tangle yes
-    (defun my/generate-zettel-name ()
-      (setq my-org-note--name (read-string "Title:"))
-      (setq my-org-note--time (format-time-string "%Y.%m.%d_%H.%M.%S"))
-      (expand-file-name (format "%s.org" my-org-note--time) "~/notes/zettel"))
-    (setq org-capture-templates
-          '(("z" "Zettel" plain
-             (file my/generate-zettel-name)
-             "%(format \"#+TITLE: %s\n#+DATE: %s\n#+TAGS:\n\#+SOURCE: n\" my-org-note--name my-org-note--time)"
-             )
-            ))
-  #+end_src
