@@ -110,6 +110,19 @@
      )
    )
 #+end_src
+#+begin_src emacs-lisp :tangle yes
+(add-to-list 'org-latex-classes 
+             '("memoir" 
+               "\\documentclass{memoir}"
+               ("\\chapter{%s}" . "\\chapter*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
+               )
+)
+#+end_src
 ** Enable Habits
 #+begin_src emacs-lisp :tangle yes
   (add-to-list 'org-modules 'org-habit)
