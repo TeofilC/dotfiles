@@ -8,4 +8,4 @@
       relink: true
     ~/.xmobarrc:
       relink: true
-    ~/.ispell_english:
+    ~/.aspell.en.pws:
